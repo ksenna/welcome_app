@@ -30,3 +30,11 @@ legend {
 .top-container {
 	width: 1170px;
 }
+
+.headerClass {
+  color: #333;
+}
+
+.anotherClass {
+  color: pink;
+}

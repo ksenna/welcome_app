@@ -1,21 +1,29 @@
-%h1 Registered users
+.container
+  .row
+  .headerClass
+    %h1 Registered users
 
-%table
-  %tr
-    %th Name
-    %th Email
-    %th
-    %th
-    %th
-
-  - @users.each do |user|
+  %table
     %tr
-      %td= user.name
-      %td= user.email
-      %td= link_to 'Show', user
-      %td= link_to 'Edit', edit_user_path(user)
-      %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %th Name
+      %th Email
+      %th
+      %th
+      %th
 
-%br
+    - @users.each do |user|
+      %tr
+        %td= user.name
+        %td= user.email
+        %td= link_to 'Show', user
+        %td= link_to 'Edit', edit_user_path(user)
+        %td= link_to 'Destroy', user, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
-= button_to 'New User', new_user_path, method: "get", :class => "btn btn-xs btn-success"
+  %br
+
+  = button_to 'New User', new_user_path, method: "get", :class => "btn btn-xs btn-success"
+
+:javascript
+  $(".headerClass").on('click', function() {
+    $(this).addClass("anotherClass");
+  });
