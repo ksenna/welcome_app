@@ -5,22 +5,24 @@
     %img#imgClickAndChange{:alt => "", :onclick => "changeImage()", :src => "http://www.pointreyesseashore.com/blog/wp-content/uploads/beach-small1.JPG", :style => "height: 185px; width: 298px"}
 
   .row
-  %legend Login
-  = form_tag sessions_path do
-    .form-horizontal
-      .fieldset
-        .form-group
-          .col-lg-6
-            .form-group
-              = label_tag :email, nil, class: "col-lg-2 control-label"
-              = text_field_tag :email, params[:email], class: "form-control", type: "email"
-            .form-group
-              = label_tag :password, nil, class: "col-lg-2 control-label"
-              = password_field_tag :password, nil, class: "form-control", type: "password"
-            .actions
+    = link_to 'Log In', '#', :id => "loginmodal-toggle"
+  .loginmodal
+    %legend Login
+    = form_tag sessions_path do
+      .form-horizontal
+        .fieldset
+          .form-group
+            .col-lg-6
               .form-group
-                = submit_tag 'Login', :class => "btn btn-primary"
-                = link_to 'Sign Up', new_user_path, :class => "btn btn-success"
+                = label_tag :email, nil, class: "col-lg-2 control-label"
+                = text_field_tag :email, params[:email], class: "form-control", type: "email"
+              .form-group
+                = label_tag :password, nil, class: "col-lg-2 control-label"
+                = password_field_tag :password, nil, class: "form-control", type: "password"
+              .actions
+                .form-group
+                  = submit_tag 'Login', :class => "btn btn-primary"
+                  = link_to 'Sign Up', new_user_path, :class => "btn btn-success"
 
 
 :javascript
@@ -34,3 +36,12 @@
       document.getElementById("imgClickAndChange").src = "http://www.pointreyesseashore.com/blog/wp-content/uploads/beach-small1.JPG";
     }
   }
+
+  $(document).ready(function() {
+    $('.loginmodal').hide();
+
+    $('#loginmodal-toggle').click(function() {
+      $('.loginmodal').toggle(400);
+      return false;
+    });
+  });

@@ -38,3 +38,8 @@ legend {
 .anotherClass {
   color: pink;
 }
+
+.loginmodal {
+  border: 1px #ccc dashed;
+  
+}
