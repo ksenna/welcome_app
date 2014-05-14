@@ -1,5 +1,39 @@
-%h1 New user
+.container
+	.row
+		= form_for @user do |f|
+			- if @user.errors.any?
+				#error_explanation
+					%h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+					%ul
+						- @user.errors.full_messages.each do |msg|
+							%li= msg
+			.field
+				= f.label :name
+				= f.text_field :name
+			.field
+				= f.label :email
+				= f.text_field :email
+			.field
+				= f.label :password
+				= f.password_field :password
+			.field
+				= f.label 'Confirm Password'
+				= f.password_field :password_confirmation
+			.actions
+				= f.submit 'Save'
+	.row
+		%br
+		%p
+			%img#imgClickAndChange{:alt => "", :onclick => "changeImage()", :src => "http://www.pointreyesseashore.com/blog/wp-content/uploads/beach-small1.JPG", :style => "height: 85px; width: 198px"}
 
-= render 'form'
-
-= link_to 'Back', users_path
+:javascript
+	function changeImage() {
+		if (document.getElementById("imgClickAndChange").src == "http://www.pointreyesseashore.com/blog/wp-content/uploads/beach-small1.JPG") 
+		{
+			document.getElementById("imgClickAndChange").src = "http://ultrafithealth.com/wp-content/uploads/2014/01/myrtle-beach-small.jpg";
+		}
+		else 
+		{
+			document.getElementById("imgClickAndChange").src = "http://www.pointreyesseashore.com/blog/wp-content/uploads/beach-small1.JPG";
+		}
+	}

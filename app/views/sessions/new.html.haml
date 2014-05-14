@@ -1,4 +1,10 @@
 .container
+  .row
+  %br
+  %p
+    %img#imgClickAndChange{:alt => "", :onclick => "changeImage()", :src => "http://www.pointreyesseashore.com/blog/wp-content/uploads/beach-small1.JPG", :style => "height: 185px; width: 298px"}
+
+  .row
   %legend Login
   = form_tag sessions_path do
     .form-horizontal
@@ -15,3 +21,16 @@
               .form-group
                 = submit_tag 'Login', :class => "btn btn-primary"
                 = link_to 'Sign Up', new_user_path, :class => "btn btn-success"
+
+
+:javascript
+  function changeImage() {
+    if (document.getElementById("imgClickAndChange").src == "http://www.pointreyesseashore.com/blog/wp-content/uploads/beach-small1.JPG") 
+    {
+      document.getElementById("imgClickAndChange").src = "http://ultrafithealth.com/wp-content/uploads/2014/01/myrtle-beach-small.jpg";
+    }
+    else 
+    {
+      document.getElementById("imgClickAndChange").src = "http://www.pointreyesseashore.com/blog/wp-content/uploads/beach-small1.JPG";
+    }
+  }
