@@ -8,20 +8,18 @@
     = csrf_meta_tags
   %body
     .container
-      .navbar.navbar-inverse.navbar-fixed-top
-        .navbar-header
-          %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", type: "button"}
-            %span.icon-bar
-            %span.icon-bar
-            %span.icon-bar
-        = link_to "Users Auth App", users_path, :class => "navbar-brand"
-        .navbar-collapse.collapse.navbar-responsive-collapse
-          %ul.nav.navbar-nav
-            %li= link_to "Home", users_path
-          %ul.nav.navbar-nav.navbar-right
-            %li= link_to "Logout", logout_path, :data => { confirm: "Logout?"}
-            
-    %br
-    %br
-    %br
-      = yield
+      .row
+        .navbar.navbar-inverse.navbar-fixed-top
+          .navbar-header
+            %button.navbar-toggle{"data-target" => ".navbar-responsive-collapse", "data-toggle" => "collapse", type: "button"}
+              %span.icon-bar
+              %span.icon-bar
+              %span.icon-bar
+          = link_to "Users Auth App", users_path, :class => "navbar-brand"
+          .navbar-collapse.collapse.navbar-responsive-collapse
+            %ul.nav.navbar-nav
+              %li= link_to "Home", users_path
+            %ul.nav.navbar-nav.navbar-right
+              %li= link_to "Logout", logout_path, :data => { confirm: "Logout?"}  
+    %br             
+    = yield
