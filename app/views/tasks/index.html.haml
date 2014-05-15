@@ -1,8 +1,13 @@
 .container
 	.row
+	%br
+	%br
+	= link_to 'New Task', new_task_path, class: 'btn btn-primary', remote: true	
 	- if @tasks.empty?
 		%span.text-warning There are no tasks!
 	- else
+		%br
+		%h3 Uncompleted Tasks
 		%table.table.table-hover.table-bordered
 			%thead
 				%tr
@@ -13,7 +18,18 @@
 					%tr
 						%td= task.title
 						%td= check_box_tag "completed", "1", task.completed, data: { "task-id" => task.id }
-	= link_to 'New Task', new_task_path, class: 'btn btn-primary', remote: true
+		%br
+		%h3 Completed Tasks
+		%table.table.table-hover.table-bordered
+			%thead
+				%tr
+					%th Title
+					%th Mark uncomplete?
+			%tbody
+				- @tasks.each do |task|
+					%tr
+						%td= task.title
+						%td= check_box_tag "completed", "0", task.completed, data: { "task-id" => task.id }
 #modal.modal.fade
 
 %br

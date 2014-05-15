@@ -15,7 +15,8 @@ $(function(){
 			type: 'PUT',
 			data: {
 				task: {
-					"completed": true
+					"completed": true,
+					"completed": false
 				}
 			},
 			success: function(data){
@@ -23,7 +24,14 @@ $(function(){
 				if (data == "1") {
 					// return true
 					// console.log("true");
-					$(row).hide( "slow" );
+					// $(row).hide( "slow" );
+					$(row).addClass("completed");
+				}
+				else {
+					console.log(data);
+					if (data == "0") {
+						$(row).addClass("incomplete";)
+					}
 				}
 				else {
 					// return false
