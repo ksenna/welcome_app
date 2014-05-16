@@ -1,5 +1,25 @@
 $(function(){
-	
+
+	$('.shit').on('click', function() {
+		var task_id = $(this).attr("task-id"),
+		temp = "#edit-task-" + task_id
+		$(temp).modal('toggle');
+	});
+
+	$('#new-task-btn').on('click', function() {
+		$('#new-task-modal').modal('toggle');
+		$("#new_task").bind("ajax:beforeSend", function(event,xhr,status) {
+			$('.new-input').val('');
+		});
+	});
+
+	$('#save').on('click', function() {
+
+		$()
+
+	})
+
+
 	$(':checkbox').on('click', function(){
 		
 		var row 			= $(this).parents('tr'),
@@ -9,6 +29,8 @@ $(function(){
 
 		// console.log(task_id)
 	
+
+		// try toggleClass when checked, instead of addClass
 		$.ajax({
 			
 			url: "/tasks/" + task_id,
@@ -16,7 +38,6 @@ $(function(){
 			data: {
 				task: {
 					"completed": true,
-					"completed": false
 				}
 			},
 			success: function(data){
@@ -25,18 +46,12 @@ $(function(){
 					// return true
 					// console.log("true");
 					// $(row).hide( "slow" );
-					$(row).addClass("completed");
-				}
-				else {
-					console.log(data);
-					if (data == "0") {
-						$(row).addClass("incomplete";)
-					}
+					$(row).toggleClass("completed");
 				}
 				else {
 					// return false
 					console.log("false");
-					$(row).addClass("failed");
+					$(row).toggleClass("failed");
 				}
 			}
 

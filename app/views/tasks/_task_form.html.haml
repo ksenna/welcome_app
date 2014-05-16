@@ -1,7 +1,7 @@
 .modal-header
-	%h1 New Task
-= form_for @task, class: 'clearfix' do |f|
+	%h1 Tasks
+= form_for(Task.new, class: 'clearfix', remote: true) do |f|
 	.modal-body
 		= f.text_field :title
 	.modal-footer
-		= f.submit 'Save', class: 'btn btn-primary'
+		= f.submit 'Save', :id => 'save', class: 'btn btn-primary'

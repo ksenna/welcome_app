@@ -1,6 +1,4 @@
-= form_for @task do |f|
-  .field
-    = f.label :title
-    = f.text_field :title
-  .actions
-    = f.submit 'Save'
+.modal-body
+	= f.text_field :title, class: "new-input"
+.modal-footer
+	= f.submit 'Save', :id => 'save', class: 'btn btn-primary'

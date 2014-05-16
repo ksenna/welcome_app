@@ -1,0 +1,12 @@
+%li
+	= task.title
+	= check_box_tag "completed", "1", task.completed, data: { "task-id" => task.id }
+	
+	= link_to 'x', task_path(task), remote: true, method: :delete, data: {confirm: "Are you sure you want to delete this task?"}
+	= button_tag(type: "button", class: "btn btn-primary shit", "task-id" => task.id) do
+		= content_tag(:strong, "Edit task")
+	.modal.fade.update-modal{id: "edit-task-#{task.id}"}
+		.modal-header
+			%h1 Edit Task
+		= form_for(task, remote: true, id: "edit-form", method: :put) do |f|
+			= render "form", f: f

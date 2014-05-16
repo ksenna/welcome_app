@@ -1,0 +1,3 @@
+console.log('hide modal')
+$('#task-list').html('<%= j(render partial: 'task_list', locals: {task: @task}) %>');
+$('#modal').modal('toggle');

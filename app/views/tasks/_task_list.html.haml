@@ -1,0 +1,26 @@
+.container
+/ - if tasks.empty?
+/ 	%span.text-warning There are no tasks!
+/ - else
+/ 	%br
+/ 	%h3 Uncompleted Tasks
+/ 	%table.table.table-hover.table-bordered
+/ 		%thead
+/ 			%tr
+/ 				%th Title
+/ 				%th Completed?
+/ 		%tbody
+/ 			- tasks.each do |task|
+/ 				%tr
+/ 					%td= task.title
+/ 					%td= check_box_tag "completed", "1", task.completed, data: { "task-id" => task.id }
+/ 					%td
+/ 						= link_to 'x', task_path(task), remote: true, method: :delete, data: {confirm: "Are you sure you want to delete this task?"}
+/ 						= button_tag(type: "button", class: "btn btn-primary shit", "task-id" => task.id) do
+/ 							= content_tag(:strong, "Edit task")
+/ 					.modal.fade{id: "taskmodal#{task.id}"}
+/ 						= render partial: "task_form", locals: {task: task, tasks: tasks}
+
+%ul{id: "tasks"}
+	- tasks.each do |task|
+		= render partial: "task", locals: { task: task }

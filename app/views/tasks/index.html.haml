@@ -1,36 +1,23 @@
-.container
-	.row
-	%br
-	%br
-	= link_to 'New Task', new_task_path, class: 'btn btn-primary', remote: true	
-	- if @tasks.empty?
-		%span.text-warning There are no tasks!
-	- else
-		%br
-		%h3 Uncompleted Tasks
-		%table.table.table-hover.table-bordered
-			%thead
-				%tr
-					%th Title
-					%th Complete?
-			%tbody
-				- @tasks.each do |task|
-					%tr
-						%td= task.title
-						%td= check_box_tag "completed", "1", task.completed, data: { "task-id" => task.id }
-		%br
-		%h3 Completed Tasks
-		%table.table.table-hover.table-bordered
-			%thead
-				%tr
-					%th Title
-					%th Mark uncomplete?
-			%tbody
-				- @tasks.each do |task|
-					%tr
-						%td= task.title
-						%td= check_box_tag "completed", "0", task.completed, data: { "task-id" => task.id }
-#modal.modal.fade
+/ .container
+/ 	.row
+/ 		.col-md-3
+/ 		.col-md-6
+/ 			= form_for(Task.new, remote: true, id: "new-form") do |f|
+/ 				= f.text_field :title, class: "new-input"
+/ 				= f.submit 'Save', :id => 'save', class: 'btn btn-primary'
+/ 		.col-md-3
+/ 	%br
+
+#task-list.container 
+	= render partial: 'tasks/task_list', locals: {tasks: @tasks}
 
 %br
-= button_to 'New Task', new_task_path
+//= button_to 'New Task', new_task_path
+
+= button_tag(type: "button", class: "btn btn-primary", id: "new-task-btn") do
+	= content_tag(:strong, "New task")
+.modal.fade{id: "new-task-modal"}
+	.modal-header
+		%h1 Tasks
+	= form_for(Task.new, remote: true, id: "new-form") do |f|
+		= render "form", f: f
